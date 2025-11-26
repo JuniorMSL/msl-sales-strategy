@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales - MSALES</title>
+    <meta name="description"
+        content="Mentions légales, politique de confidentialité et informations juridiques de MSALES.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #050505;
+            --accent: #2563EB;
+            --text-main: #0a0a0a;
+            --text-secondary: #525252;
+            --bg-body: #ffffff;
+            --bg-alt: #fafafa;
+            --border-light: #e5e5e5;
+            --radius-lg: 24px;
+            --radius-md: 12px;
+            --container-width: 900px;
+            --header-height: 70px;
+            --ease-tech: cubic-bezier(0.16, 1, 0.3, 1);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 9999;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.03em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+            opacity: 0.6;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 99px;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s var(--ease-tech);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hero */
+        .hero-legal {
+            padding-top: 200px;
+            padding-bottom: 120px;
+            background: #000;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        .hero-bg-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            filter: saturate(0);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, #000 90%);
+            z-index: 2;
+        }
+
+        .hero-legal .container {
+            position: relative;
+            z-index: 3;
+        }
+
+        .hero-legal h1 {
+            font-size: 72px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .hero-legal p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content */
+        .legal-content {
+            padding: 80px 0 120px;
+        }
+
+        .info-box {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            margin-bottom: 60px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s var(--ease-tech);
+        }
+
+        .info-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-box h2 {
+            font-size: 28px;
+            margin-bottom: 28px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent) 0%, #1d4ed8 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--accent);
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+
+        .info-box strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .info-list li {
+            padding: 12px 0;
+            padding-left: 24px;
+            position: relative;
+            color: var(--text-secondary);
+        }
+
+        .info-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 20px;
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 32px;
+            border-radius: var(--radius-md);
+            margin: 24px 0;
+        }
+
+        .contact-info p {
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .highlight-box {
+            background: rgba(37, 99, 235, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 24px;
+            border-radius: 8px;
+            margin: 24px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            color: var(--text-main);
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            background: #000;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .footer-cta h2 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .footer-cta p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 32px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        /* Visual Dividers */
+        .visual-divider {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            margin: 80px 0;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .divider-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .divider-content {
+            text-align: center;
+            color: white;
+            max-width: 600px;
+        }
+
+        .divider-content h3 {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .divider-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+        }
+
+        /* Split Section */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin: 80px 0;
+        }
+
+        .split-image {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Animations */
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-legal h1 {
+                font-size: 40px;
+            }
+
+            .info-box {
+                padding: 24px;
+            }
+
+            .split-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .split-image {
+                height: 300px;
+            }
+
+            .visual-divider {
+                height: 200px;
+                margin: 40px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">MSALES</a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="a-propos.html" class="nav-link">À propos</a>
+                <a href="produits.html" class="nav-link">Produits</a>
+                <a href="formation.html" class="nav-link">Formation</a>
+                <a href="partenaire-carriere.html" class="nav-link">Carrière</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </nav>
+            <a href="contact.html" class="btn btn-primary">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero-legal">
+        <div class="hero-bg-image">
+            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                alt="Legal">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <h1 class="reveal-text">Mentions Légales</h1>
+            <p class="reveal-text">Informations juridiques et politique de confidentialité</p>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="legal-content">
+        <div class="container">
+
+            <!-- Éditeur -->
+            <div class="info-box reveal-text">
+                <h2>
+                    <div class="section-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </div>
+                    Éditeur du site
+                </h2>
+                <div class="contact-info">
+                    <p><strong>Raison sociale :</strong> MSALES Stratégie</p>
+                    <p><strong>Siège social :</strong> Bruxelles, Belgique / Casablanca, Maroc</p>
+                    <p><strong>Email :</strong> <a href="mailto:contact@msales.com"
+                            style="color: var(--accent);">contact@msales.com</a></p>
+                    <p><strong>Téléphone :</strong> +33 X XX XX XX XX</p>
+                    <p><strong>RCS / SIRET :</strong> [Numéro à compléter]</p>
+                    <p><strong>Directeur de la publication :</strong> [Nom du dirigeant]</p>
+                </div>
+            </div>
+
+            <!-- Visual Divider 1 -->
+            <div class="visual-divider reveal-text"
+                style="background-image: url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');">
+                <div class="divider-overlay">
+                    <div class="divider-content">
+                        <h3>Transparence & Conformité</h3>
+                        <p>MSALES s'engage à respecter toutes les réglementations en vigueur</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hébergeur -->
+            <div class="info-box reveal-text">
+                <h2>
+                    <div class="section-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                        </svg>
+                    </div>
+                    Hébergeur du site
+                </h2>
+                <p>Le site MSALES est hébergé par :</p>
+                <div class="contact-info">
+                    <p><strong>Nom :</strong> [Nom de l'hébergeur]</p>
+                    <p><strong>Adresse :</strong> [Adresse complète de l'hébergeur]</p>
+                    <p><strong>Téléphone :</strong> [Téléphone de l'hébergeur]</p>
+                </div>
+            </div>
+
+            <!-- Split Section: Propriété intellectuelle -->
+            <div class="split-section reveal-text">
+                <div class="split-image">
+                    <img src="https://images.unsplash.com/photo-1618044733300-9472054094ee?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Propriété intellectuelle">
+                </div>
+                <div>
+                    <div class="info-box" style="margin: 0;">
+                        <h2>
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
+                            Propriété intellectuelle
+                        </h2>
+                        <p>Tous les contenus présents sur ce site (textes, images, vidéos, logos, graphismes, etc.) sont
+                            la
+                            propriété exclusive de <strong>MSALES Stratégie</strong> ou sont utilisés avec
+                            l'autorisation de
+                            leurs propriétaires respectifs.</p>
+
+                        <div class="highlight-box">
+                            <p><strong>Toute reproduction, distribution, modification, adaptation, retransmission ou
+                                    publication, même partielle, de ces différents éléments est strictement interdite
+                                    sans
+                                    l'accord écrit préalable de MSALES.</strong></p>
+                        </div>
+
+                        <p>Cette interdiction s'étend aux représentations iconographiques et photographiques
+                            reproduisant la
+                            mise en page du site et/ou tout ou partie des éléments graphiques qui le composent.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visual Divider 2 -->
+            <div class="visual-divider reveal-text"
+                style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');">
+                <div class="divider-overlay">
+                    <div class="divider-content">
+                        <h3>Protection des Données</h3>
+                        <p>Vos informations personnelles sont sécurisées et protégées</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Données personnelles -->
+            <div class="info-box reveal-text">
+                <h2>
+                    <div class="section-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    Données personnelles & RGPD
+                </h2>
+                <p>Conformément au <strong>Règlement Général sur la Protection des Données (RGPD)</strong>, les
+                    informations collectées via le formulaire de contact ou lors de l'inscription sont utilisées
+                    uniquement pour :</p>
+
+                <ul class="info-list">
+                    <li>La gestion de votre demande de contact</li>
+                    <li>Le suivi de votre parcours en tant que partenaire ou prospect</li>
+                    <li>L'envoi d'informations relatives à nos services et formations</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>Vos droits :</strong> Vous disposez d'un droit d'accès, de rectification, de modification
+                        et de suppression des données vous concernant. Pour exercer ces droits, contactez-nous à : <a
+                            href="mailto:contact@msales.com" style="color: var(--accent);">contact@msales.com</a></p>
+                </div>
+
+                <p>Vos données ne sont jamais vendues ni partagées avec des tiers sans votre consentement explicite.</p>
+            </div>
+
+            <!-- Split Section: Responsabilité -->
+            <div class="split-section reveal-text" style="direction: rtl;">
+                <div class="split-image">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Responsabilité">
+                </div>
+                <div style="direction: ltr;">
+                    <div class="info-box" style="margin: 0;">
+                        <h2>
+                            <div class="section-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                </svg>
+                            </div>
+                            Responsabilité
+                        </h2>
+                        <p><strong>MSALES Stratégie</strong> s'efforce de fournir sur ce site des informations aussi
+                            précises
+                            que possible. Toutefois, nous ne pouvons garantir l'exactitude, la complétude ou l'actualité
+                            des
+                            informations diffusées.</p>
+
+                        <p>En conséquence, l'utilisateur reconnaît utiliser ces informations sous sa responsabilité
+                            exclusive.
+                            MSALES ne pourra être tenu responsable des dommages directs ou indirects résultant de
+                            l'utilisation
+                            du site ou de l'impossibilité d'y accéder.</p>
+
+                        <p>MSALES se réserve le droit de modifier ou de corriger le contenu de ce site à tout moment et
+                            sans
+                            préavis.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Liens externes -->
+            <div class="info-box reveal-text">
+                <h2>
+                    <div class="section-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </div>
+                    Liens externes
+                </h2>
+                <p>Le site MSALES peut contenir des liens hypertextes vers d'autres sites présents sur le réseau
+                    Internet. Ces liens sont fournis à titre purement informatif.</p>
+
+                <div class="highlight-box">
+                    <p><strong>MSALES n'exerce aucun contrôle sur le contenu de ces sites externes et décline toute
+                            responsabilité quant aux informations qui y sont diffusées.</strong></p>
+                </div>
+
+                <p>La présence de liens vers d'autres sites n'implique pas l'approbation de leur contenu par MSALES.</p>
+            </div>
+
+            <!-- Cookies -->
+            <div class="info-box reveal-text">
+                <h2>
+                    <div class="section-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <circle cx="7" cy="7" r="1.5"></circle>
+                            <circle cx="17" cy="7" r="1.5"></circle>
+                            <circle cx="7" cy="17" r="1.5"></circle>
+                            <circle cx="17" cy="17" r="1.5"></circle>
+                        </svg>
+                    </div>
+                    Cookies
+                </h2>
+                <p>Le site MSALES utilise des cookies pour améliorer l'expérience utilisateur et analyser l'audience du
+                    site.</p>
+
+                <ul class="info-list">
+                    <li><strong>Cookies techniques :</strong> Nécessaires au bon fonctionnement du site</li>
+                    <li><strong>Cookies analytiques :</strong> Pour comprendre comment les visiteurs utilisent le site
+                    </li>
+                    <li><strong>Cookies de performance :</strong> Pour optimiser les performances du site</li>
+                </ul>
+
+                <p>Vous pouvez accepter ou refuser les cookies via les paramètres de votre navigateur. Le refus de
+                    certains cookies peut limiter l'accès à certaines fonctionnalités du site.</p>
+
+                <div class="highlight-box">
+                    <p>Pour en savoir plus sur la gestion des cookies, consultez la documentation de votre navigateur ou
+                        contactez-nous à <a href="mailto:contact@msales.com"
+                            style="color: var(--accent);">contact@msales.com</a></p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container">
+            <h2 class="reveal-text">Une question sur nos mentions légales ?</h2>
+            <p class="reveal-text">Notre équipe est à votre disposition pour toute demande d'information.</p>
+            <a href="contact.html" class="btn btn-primary reveal-text" style="background: white; color: black;">Nous
+                contacter</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Découvrir</h4>
+                    <ul>
+                        <li><a href="produits.html">Produits</a></li>
+                        <li><a href="formation.html">Formation</a></li>
+                        <li><a href="partenaire-carriere.html">Carrière</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Compte</h4>
+                    <ul>
+                        <li><a href="#contact">Espace Partenaire</a></li>
+                        <li><a href="#contact">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MSALES</h4>
+                    <ul>
+                        <li><a href="a-propos.html">À propos</a></li>
+                        <li><a href="partenaire-carriere.html">Carrières</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Légal</h4>
+                    <ul>
+                        <li><a href="mentions-legales.html">Confidentialité</a></li>
+                        <li><a href="mentions-legales.html">Conditions d'utilisation</a></li>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 20px;">
+                <p>Copyright © 2025 MSALES Inc. Tous droits réservés.</p>
+                <p>Belgique / Maroc</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Parallax
+        gsap.to(".hero-bg-image", {
+            yPercent: 30,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero-legal",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // Reveal Animations
+        const revealElements = document.querySelectorAll('.reveal-text');
+        revealElements.forEach(el => {
+            gsap.fromTo(el,
+                { opacity: 0, y: 30 },
+                {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                }
+            );
+        });
+    </script>
+</body>
+
+</html>

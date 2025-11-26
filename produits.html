@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produits MSALES - Solutions Utiles, Revenus Durables</title>
+    <meta name="description"
+        content="Découvrez les produits MSALES : Caisse Éco-Tech et Pack Mémoire de Poste. Des solutions innovantes pour générer des revenus durables.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #111111;
+            --accent: #2563EB;
+            --text-main: #0a0a0a;
+            --text-secondary: #525252;
+            --bg-body: #ffffff;
+            --bg-alt: #fafafa;
+            --border-light: #e5e5e5;
+            --radius-lg: 16px;
+            --radius-md: 8px;
+            --radius-sm: 4px;
+            --container-width: 1140px;
+            --header-height: 70px;
+            --ease-tech: cubic-bezier(0.16, 1, 0.3, 1);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+        }
+
+        h1 {
+            font-size: 64px;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        h2 {
+            font-size: 42px;
+            line-height: 1.1;
+            margin-bottom: 0.6em;
+        }
+
+        h3 {
+            font-size: 24px;
+            line-height: 1.3;
+            margin-bottom: 0.4em;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 1.5em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-alt {
+            background-color: var(--bg-alt);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s var(--ease-tech);
+            border: 1px solid transparent;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: white;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 9999;
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 19px;
+            color: var(--text-main);
+            letter-spacing: -0.01em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            color: var(--text-main);
+        }
+
+        /* Hero Section - Immersive */
+        .hero-products {
+            height: 90vh;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #050505;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            opacity: 0.5;
+            will-change: transform;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 24px;
+        }
+
+        .hero-products h1 {
+            font-size: 72px;
+            margin-bottom: 24px;
+            color: white;
+            line-height: 1.05;
+        }
+
+        .hero-products p {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* Product Showcase - Split Layout */
+        .product-section {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .product-row {
+            display: flex;
+            min-height: 80vh;
+        }
+
+        .product-row.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .product-visual {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s var(--ease-tech);
+        }
+
+        .product-row:hover .product-visual img {
+            transform: scale(1.05);
+        }
+
+        .product-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px;
+            background: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-inner {
+            max-width: 500px;
+        }
+
+        .product-number {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--accent);
+            margin-bottom: 24px;
+            display: block;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        .product-title {
+            font-size: 48px;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .product-desc {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .product-highlight {
+            padding: 24px;
+            background: var(--bg-alt);
+            border-radius: var(--radius-md);
+            margin-bottom: 32px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .product-highlight p {
+            margin-bottom: 0;
+            font-weight: 500;
+            color: var(--text-main);
+            font-size: 16px;
+        }
+
+        .benefit-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .benefit-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        .benefit-list li svg {
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        /* Comparison Section - Immersive */
+        .comparison-section {
+            background: #111;
+            color: white;
+            padding: 140px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .comp-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 50px;
+            transition: all 0.4s var(--ease-tech);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comp-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .comp-card.highlight {
+            background: white;
+            color: black;
+            border-color: white;
+        }
+
+        .comp-card.highlight:hover {
+            background: #f0f0f0;
+        }
+
+        .comp-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+
+        .badge-dark {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .badge-light {
+            background: #000;
+            color: white;
+        }
+
+        .comp-title {
+            font-size: 32px;
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+
+        .comp-desc {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .comp-card.highlight .comp-desc {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .comp-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comp-card.highlight .comp-stats {
+            border-top-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            opacity: 0.5;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* Why Join List - Minimalist */
+        .why-join-list {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 100px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .why-item {
+            background: #1a1a1a;
+            padding: 40px 20px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .why-item:hover {
+            background: #222;
+        }
+
+        .why-number {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .why-item h4 {
+            font-size: 16px;
+            color: white;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-alt);
+            padding: 80px 0 40px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-col h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        /* Animations */
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @media (max-width: 1024px) {
+
+            .product-row,
+            .product-row.reverse {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .product-visual {
+                height: 400px;
+            }
+
+            .product-content {
+                padding: 60px 24px;
+            }
+
+            .why-join-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-products h1 {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+         <header>
+        <div class="header-inner">
+            <a href="#" class="logo"
+                style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em;">MSALES.</a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="a-propos.html" class="nav-link" >À propos</a>
+                <a href="produits.html" class="nav-link" style="opacity: 1; color: var(--primary);">Produits</a>
+                <a href="formation.html" class="nav-link" >Formation</a>
+                <a href="partenaire-carriere.html" class="nav-link" >Carrière</a>
+                <a href="faq.html" class="nav-link" >FAQ</a>
+                <a href="blog.html" class="nav-link" >Blog</a>
+                <a href="contact.html" class="nav-link" >Contact</a>
+            </nav>
+            <a href="#partenaire" class="btn btn-primary" style="padding: 6px 16px; font-size: 12px;">Démarrer</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-products">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                alt="Produits">
+        </div>
+        <div class="hero-content-wrapper">
+            <h1 class="reveal-text">Des solutions utiles.<br>Des revenus durables.</h1>
+            <p class="reveal-text">Représentez des produits à fort impact — simples à présenter, utiles pour vos
+                clients, et rentables pour vous.</p>
+            <div class="reveal-text">
+                <a href="index.html#contact" class="btn btn-primary" style="background: white; color: black;">Devenir
+                    partenaire aujourd’hui</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 1: Eco-Tech -->
+    <section class="product-section">
+        <div class="product-row">
+            <div class="product-visual">
+                <img src="./assets/product-ecotech.png" alt="Caisse Enregistreuse">
+            </div>
+            <div class="product-content">
+                <div class="product-inner reveal-text">
+                    <span class="product-number">PRODUIT 01</span>
+                    <h2 class="product-title">Caisse Enregistreuse Éco-Tech</h2>
+                    <p class="product-desc">Moderniser les commerces, simplifier la gestion. Une solution complète
+                        (matériel + logiciel Odoo + formation) pour aider les commerçants à mieux gérer leurs ventes.
+                    </p>
+
+                    <div class="product-highlight">
+                        <p>“Vous ne vendez pas une caisse enregistreuse, vous offrez une évolution.”</p>
+                    </div>
+
+                    <ul class="benefit-list">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Marché large (cafés, snacks, coiffeurs...)
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Produit clair, rentable et valorisant
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Commission directe sur chaque installation
+                        </li>
+                    </ul>
+
+                    <a href="index.html#contact" class="btn btn-primary">Découvrir Éco-Tech</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 2: Pack Mémoire -->
+    <section class="product-section">
+        <div class="product-row reverse">
+            <div class="product-visual">
+                <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                    alt="Pack Mémoire">
+            </div>
+            <div class="product-content" style="background: #f9f9f9;">
+                <div class="product-inner reveal-text">
+                    <span class="product-number">PRODUIT 02</span>
+                    <h2 class="product-title">Pack Mémoire de Poste</h2>
+                    <p class="product-desc">Le savoir ne doit plus se perdre. Une solution pour capter, structurer et
+                        transmettre le savoir interne sous forme de fiches, vidéos et quiz.</p>
+
+                    <div class="product-highlight" style="border-color: #000;">
+                        <p>“Une solution qui sécurise les équipes et accélère la performance.”</p>
+                    </div>
+
+                    <ul class="benefit-list">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Produit à forte valeur ajoutée
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Cible universelle : PME, franchises, startups
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Commissions jusqu’à 20 % sur chaque contrat
+                        </li>
+                    </ul>
+
+                    <a href="index.html#contact" class="btn btn-primary">Découvrir le Pack Mémoire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="text-center reveal-text" style="margin-bottom: 60px;">
+                <h2 style="color: white;">Deux statuts, deux manières de réussir</h2>
+                <p style="color: rgba(255,255,255,0.6);">Choisissez le niveau d'implication qui vous correspond.</p>
+            </div>
+
+            <div class="comparison-cards">
+                <!-- Card 1 -->
+                <div class="comp-card reveal-text">
+                    <span class="comp-badge badge-dark">Niveau 1</span>
+                    <h3 class="comp-title" style="color: white;">Partenaire Découvreur</h3>
+                    <p class="comp-desc">Idéal pour débuter. Vous recommandez simplement nos solutions à votre réseau et
+                        touchez une commission directe.</p>
+
+                    <div class="comp-stats">
+                        <div>
+                            <span class="stat-label">Rôle</span>
+                            <div class="stat-value">Connecteur</div>
+                        </div>
+                        <div>
+                            <span class="stat-label">Commission</span>
+                            <div class="stat-value" style="color: var(--accent);">10 % / vente</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="comp-card highlight reveal-text">
+                    <span class="comp-badge badge-light">Niveau 2</span>
+                    <h3 class="comp-title">Partenaire Business</h3>
+                    <p class="comp-desc">Pour les ambitieux. Vous présentez, concluez les ventes et pouvez développer
+                        votre propre équipe de partenaires.</p>
+
+                    <div class="comp-stats">
+                        <div>
+                            <span class="stat-label">Rôle</span>
+                            <div class="stat-value">Vendeur & Leader</div>
+                        </div>
+                        <div>
+                            <span class="stat-label">Commission</span>
+                            <div class="stat-value" style="color: var(--accent);">20 % + Bonus</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Join List -->
+            <div class="why-join-list reveal-text">
+                <div class="why-item">
+                    <span class="why-number">01</span>
+                    <h4>Produits Concrets</h4>
+                </div>
+                <div class="why-item">
+                    <span class="why-number">02</span>
+                    <h4>Commissions Claires</h4>
+                </div>
+                <div class="why-item">
+                    <span class="why-number">03</span>
+                    <h4>Liberté Totale</h4>
+                </div>
+                <div class="why-item">
+                    <span class="why-number">04</span>
+                    <h4>Formations Incluses</h4>
+                </div>
+                <div class="why-item">
+                    <span class="why-number">05</span>
+                    <h4>Aucune Pression</h4>
+                </div>
+            </div>
+
+            <div class="text-center reveal-text" style="margin-top: 100px;">
+                <h3 style="color: white; font-size: 32px; margin-bottom: 24px;">Vous recommandez. Vous gagnez. Vous
+                    progressez.</h3>
+                <p style="color: rgba(255,255,255,0.6); margin-bottom: 40px;">C’est aussi simple que ça.</p>
+                <a href="index.html#contact" class="btn btn-primary"
+                    style="background: white; color: black; padding: 18px 36px; font-size: 16px;">Rejoindre MSALES
+                    maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+   <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Découvrir</h4>
+                    <ul>
+                        <li><a href="produits.html">Produits</a></li>
+                        <li><a href="formation.html">Formation</a></li>
+                        <li><a href="partenaire-carriere.html">Carrière</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Compte</h4>
+                    <ul>
+                        <li><a href="#contact">Espace Partenaire</a></li>
+                        <li><a href="#contact">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MSALES</h4>
+                    <ul>
+                        <li><a href="a-propos.html">À propos</a></li>
+                        <li><a href="partenaire-carriere.html">Carrières</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Légal</h4>
+                    <ul>
+                        <li><a href="mentions-legales.html">Confidentialité</a></li>
+                        <li><a href="mentions-legales.html">Conditions d'utilisation</a></li>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 20px;">
+                <p>Copyright © 2025 MSALES Inc. Tous droits réservés.</p>
+                <p>Belgique / Maroc</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Parallax
+        gsap.to(".hero-bg", {
+            yPercent: 30,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero-products",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // Animations
+        const revealElements = document.querySelectorAll('.reveal-text');
+
+        revealElements.forEach(el => {
+            gsap.fromTo(el,
+                { opacity: 0, y: 30 },
+                {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                }
+            );
+        });
+    </script>
+</body>
+
+</html>

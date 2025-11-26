@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formations MSALES - Apprenez, Progressez, Gagnez</title>
+    <meta name="description"
+        content="Formations concrètes et accessibles pour réussir avec MSALES. Devenez expert en recommandation, vente et leadership.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --primary: #111111;
+            --accent: #2563EB;
+            --text-main: #0a0a0a;
+            --text-secondary: #525252;
+            --bg-body: #ffffff;
+            --bg-alt: #fafafa;
+            --border-light: #e5e5e5;
+            --radius-lg: 16px;
+            --radius-md: 8px;
+            --radius-sm: 4px;
+            --container-width: 1140px;
+            --header-height: 70px;
+            --ease-tech: cubic-bezier(0.16, 1, 0.3, 1);
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            line-height: 1.5;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-main);
+        }
+
+        h1 {
+            font-size: 64px;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        h2 {
+            font-size: 42px;
+            line-height: 1.1;
+            margin-bottom: 0.6em;
+        }
+
+        h3 {
+            font-size: 24px;
+            line-height: 1.3;
+            margin-bottom: 0.4em;
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 1.5em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-alt {
+            background-color: var(--bg-alt);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 32px;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.2s var(--ease-tech);
+            border: 1px solid transparent;
+            letter-spacing: 0.01em;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 9999;
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 19px;
+            color: var(--text-main);
+            letter-spacing: -0.01em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-main);
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 1;
+            color: var(--text-main);
+        }
+
+        /* Hero Section - Immersive Parallax */
+        .hero-training {
+            height: 90vh;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: #050505;
+            color: white;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120%;
+            /* Taller for parallax */
+            opacity: 0.4;
+            will-change: transform;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding-left: 5%;
+            /* Offset for modern look */
+        }
+
+        .hero-tag {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: var(--accent);
+            margin-bottom: 32px;
+            display: inline-block;
+            letter-spacing: 0.2em;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            padding: 8px 16px;
+            border-radius: 99px;
+            background: rgba(37, 99, 235, 0.1);
+        }
+
+        .hero-training h1 {
+            font-size: 80px;
+            margin-bottom: 32px;
+            color: white;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+        }
+
+        .hero-training p {
+            font-size: 22px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+
+        /* Pathways Section - Pro Cards */
+        .pathways-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .pathway-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: all 0.5s var(--ease-tech);
+            position: relative;
+        }
+
+        .pathway-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+            border-color: transparent;
+        }
+
+        .pathway-image {
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .pathway-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+        }
+
+        .pathway-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s var(--ease-tech);
+        }
+
+        .pathway-card:hover .pathway-image img {
+            transform: scale(1.1);
+        }
+
+        .pathway-content {
+            padding: 48px;
+        }
+
+        .pathway-label {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: block;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        .pathway-list {
+            list-style: none;
+            margin: 32px 0;
+        }
+
+        .pathway-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .pathway-list li::before {
+            content: '';
+            min-width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+
+        .pathway-goal {
+            background: #f8f9fa;
+            padding: 24px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--text-main);
+            border-left: 4px solid var(--primary);
+            line-height: 1.6;
+        }
+
+        /* Features Section - Minimalist */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border-light);
+            border: 1px solid var(--border-light);
+            margin-top: 80px;
+        }
+
+        .feature-item {
+            text-align: left;
+            padding: 48px 32px;
+            background: white;
+            transition: background 0.3s;
+        }
+
+        .feature-item:hover {
+            background: #fafafa;
+        }
+
+        .feature-number {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: var(--accent);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .feature-item h4 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        /* Support Section - Dark Tech */
+        .support-section {
+            background: #0a0a0a;
+            color: white;
+            overflow: hidden;
+            padding: 160px 0;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .support-content h2 {
+            color: white;
+            margin-bottom: 32px;
+            font-size: 48px;
+        }
+
+        .support-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 18px;
+            margin-bottom: 48px;
+        }
+
+        .support-list {
+            list-style: none;
+            margin-top: 0;
+            display: grid;
+            gap: 24px;
+        }
+
+        .support-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .support-list li:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .support-icon-box {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+        }
+
+        .support-visual {
+            position: relative;
+            height: 700px;
+            border-radius: 32px;
+            overflow: hidden;
+        }
+
+        .support-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(20%);
+        }
+
+        /* CTA Section */
+        .cta-box {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-alt);
+            padding: 80px 0 40px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-col h4 {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 16px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        /* Animations */
+        .reveal-text {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @media (max-width: 1024px) {
+
+            .pathways-grid,
+            .support-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-training h1 {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+   
+      <header>
+        <div class="header-inner">
+            <a href="#" class="logo"
+                style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em;">MSALES.</a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="a-propos.html" class="nav-link" >À propos</a>
+                <a href="produits.html" class="nav-link">Produits</a>
+                <a href="formation.html" class="nav-link" style="opacity: 1; color: var(--primary);">Formation</a>
+                <a href="partenaire-carriere.html" class="nav-link">Carrière</a>
+                <a href="faq.html" class="nav-link" >FAQ</a>
+                <a href="blog.html" class="nav-link" >Blog</a>
+                <a href="contact.html" class="nav-link" >Contact</a>
+            </nav>
+            <a href="#partenaire" class="btn btn-primary" style="padding: 6px 16px; font-size: 12px;">Démarrer</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-training">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                alt="Formation">
+        </div>
+        <div class="container hero-content-wrapper">
+            <span class="hero-tag reveal-text">MSALES ACADEMY</span>
+            <h1 class="reveal-text">Apprenez. Progressez.<br>Gagnez.</h1>
+            <p class="reveal-text">Transformez une simple recommandation en opportunité de revenu. Des formations
+                courtes, concrètes, et accessibles à tous.</p>
+            <div class="reveal-text">
+                <a href="index.html#contact" class="btn btn-primary" style="background: white; color: black;">Je
+                    commence ma formation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pathways Section -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="text-center reveal-text" style="max-width: 700px; margin: 0 auto;">
+                <h2>Deux parcours, une même ambition</h2>
+                <p>Que vous soyez débutant ou expert, nous avons le programme adapté à votre réussite.</p>
+            </div>
+
+            <div class="pathways-grid">
+                <!-- Pathway 1 -->
+                <div class="pathway-card reveal-text">
+                    <div class="pathway-image">
+                        <img src="https://images.unsplash.com/photo-1552581234-26160f608093?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Découvreur">
+                    </div>
+                    <div class="pathway-content">
+                        <span class="pathway-label">NIVEAU 1</span>
+                        <h3>Partenaire Découvreur</h3>
+                        <p>Apprenez à parler simplement des produits que vous aimez et à identifier les opportunités.
+                        </p>
+                        <ul class="pathway-list">
+                            <li>Identifier les bons contacts</li>
+                            <li>Recommander efficacement sur le terrain</li>
+                            <li>Suivre vos recommandations jusqu’à la vente</li>
+                        </ul>
+                        <div class="pathway-goal">
+                            Objectif : commencer à gagner sans vendre directement.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pathway 2 -->
+                <div class="pathway-card reveal-text">
+                    <div class="pathway-image">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Business">
+                    </div>
+                    <div class="pathway-content">
+                        <span class="pathway-label">NIVEAU 2</span>
+                        <h3>Partenaire Business</h3>
+                        <p>Développez votre réseau, maîtrisez la vente et créez une équipe solide pour des revenus
+                            récurrents.</p>
+                        <ul class="pathway-list">
+                            <li>Techniques de vente et de négociation</li>
+                            <li>Fidélisation client et suivi</li>
+                            <li>Leadership et accompagnement d’équipe</li>
+                            <li>Utilisation des outils numériques (CRM)</li>
+                        </ul>
+                        <div class="pathway-goal">
+                            Objectif : devenir autonome et faire croître vos revenus.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Method -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center reveal-text">
+                <h2>Un apprentissage simple et concret</h2>
+                <p>Vous apprenez aujourd’hui, vous appliquez demain.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item reveal-text">
+                    <span class="feature-number">01</span>
+                    <h4>Vidéos courtes</h4>
+                    <p style="font-size: 14px; margin-bottom: 0;">Modules de 5 à 10 minutes pour aller à l'essentiel.
+                    </p>
+                </div>
+                <div class="feature-item reveal-text">
+                    <span class="feature-number">02</span>
+                    <h4>Fiches pratiques</h4>
+                    <p style="font-size: 14px; margin-bottom: 0;">Synthèses téléchargeables pour réviser partout.</p>
+                </div>
+                <div class="feature-item reveal-text">
+                    <span class="feature-number">03</span>
+                    <h4>Webinaires Live</h4>
+                    <p style="font-size: 14px; margin-bottom: 0;">Sessions interactives pour poser vos questions.</p>
+                </div>
+                <div class="feature-item reveal-text">
+                    <span class="feature-number">04</span>
+                    <h4>Études de cas</h4>
+                    <p style="font-size: 14px; margin-bottom: 0;">Exemples réels de partenaires qui réussissent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="section support-section">
+        <div class="container">
+            <div class="support-grid">
+                <div class="support-content reveal-text">
+                    <h2>Un accompagnement constant</h2>
+                    <p>Chez MSALES, vous n’avancez jamais seul. Nous avons mis en place un écosystème complet pour
+                        garantir votre progression.</p>
+
+                    <ul class="support-list">
+                        <li>
+                            <div class="support-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 style="color: white; margin-bottom: 4px;">Support 7j/7</h4>
+                                <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Une équipe dédiée pour
+                                    répondre à vos questions.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="support-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 style="color: white; margin-bottom: 4px;">Communauté</h4>
+                                <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Groupe d’entraide privé
+                                    entre partenaires.</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="support-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polygon points="10 8 16 12 10 16 10 8"></polygon>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 style="color: white; margin-bottom: 4px;">Coaching Individuel</h4>
+                                <span style="color: rgba(255,255,255,0.6); font-size: 14px;">Pour les partenaires les
+                                    plus motivés.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="support-visual reveal-text">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+                        alt="Support Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section text-center">
+        <div class="container">
+            <div class="cta-box reveal-text">
+                <h2>Formez-vous. Évoluez. Réussissez.</h2>
+                <p>Plus vous apprenez, plus vous progressez — en compétences comme en revenus. Chaque module débloqué
+                    est un pas de plus vers votre autonomie.</p>
+                <div style="margin-top: 40px;">
+                    <a href="index.html#contact" class="btn btn-primary">Je démarre ma formation MSALES</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+   <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Découvrir</h4>
+                    <ul>
+                        <li><a href="produits.html">Produits</a></li>
+                        <li><a href="formation.html">Formation</a></li>
+                        <li><a href="partenaire-carriere.html">Carrière</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Compte</h4>
+                    <ul>
+                        <li><a href="#contact">Espace Partenaire</a></li>
+                        <li><a href="#contact">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>MSALES</h4>
+                    <ul>
+                        <li><a href="a-propos.html">À propos</a></li>
+                        <li><a href="partenaire-carriere.html">Carrières</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Légal</h4>
+                    <ul>
+                        <li><a href="mentions-legales.html">Confidentialité</a></li>
+                        <li><a href="mentions-legales.html">Conditions d'utilisation</a></li>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 20px;">
+                <p>Copyright © 2025 MSALES Inc. Tous droits réservés.</p>
+                <p>Belgique / Maroc</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Parallax
+        gsap.to(".hero-bg", {
+            yPercent: 30,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".hero-training",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // Animations
+        const revealElements = document.querySelectorAll('.reveal-text');
+
+        revealElements.forEach(el => {
+            gsap.fromTo(el,
+                { opacity: 0, y: 30 },
+                {
+                    scrollTrigger: {
+                        trigger: el,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: "power3.out"
+                }
+            );
+        });
+    </script>
+</body>
+
+</html>
