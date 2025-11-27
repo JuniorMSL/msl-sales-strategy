@@ -249,6 +249,39 @@
             border-radius: 2px;
         }
 
+        .mobile-menu-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            z-index: 10002;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-close span {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-main);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-close span:nth-child(1) {
+            transform: rotate(45deg);
+        }
+
+        .mobile-menu-close span:nth-child(2) {
+            transform: rotate(-45deg);
+        }
+
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -594,6 +627,10 @@
 
     <!-- Mobile Menu Overlay -->
     <div class="mobile-menu-overlay">
+        <button class="mobile-menu-close" aria-label="Fermer">
+            <span></span>
+            <span></span>
+        </button>
         <a href="index.html" class="mobile-nav-link">Accueil</a>
         <a href="a-propos.html" class="mobile-nav-link">À propos</a>
         <a href="produits.html" class="mobile-nav-link">Produits</a>
@@ -867,6 +904,7 @@
         const mobileBtn = document.querySelector('.mobile-menu-btn');
         const mobileOverlay = document.querySelector('.mobile-menu-overlay');
         const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+        const mobileClose = document.querySelector('.mobile-menu-close');
 
         mobileBtn.addEventListener('click', () => {
             mobileBtn.classList.toggle('active');
@@ -891,6 +929,14 @@
                 });
             }
         });
+
+        if (mobileClose) {
+            mobileClose.addEventListener('click', () => {
+                mobileBtn.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
 
         // Close menu when clicking a link
         mobileLinks.forEach(link => {
