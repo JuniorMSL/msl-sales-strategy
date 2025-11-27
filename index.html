@@ -8,6 +8,27 @@
     <meta name="description"
         content="MSALES : Plateforme premium de vente et de recommandation. Créez votre réseau, générez des revenus, vivez libre.">
 
+    <!-- SEO & Social -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.msales.com/index.html">
+    <meta property="og:site_name" content="MSALES">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.msales.com/index.html">
+    <meta property="og:title" content="MSALES - L'opportunité est entre vos mains">
+    <meta property="og:description"
+        content="MSALES : Plateforme premium de vente et de recommandation. Créez votre réseau, générez des revenus, vivez libre.">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MSALES - L'opportunité est entre vos mains">
+    <meta name="twitter:description"
+        content="MSALES : Plateforme premium de vente et de recommandation. Créez votre réseau, générez des revenus, vivez libre.">
+    <meta name="twitter:image"
+        content="https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2910/2910768.png">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -225,6 +246,131 @@
         .nav-link:hover {
             opacity: 1;
             color: var(--text-main);
+        }
+
+        /* Mobile Menu Styles - Premium */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            width: 30px;
+            height: 30px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10001;
+            padding: 0;
+        }
+
+        .mobile-menu-btn span {
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: all 0.3s var(--ease-tech);
+            border-radius: 2px;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            z-index: 10002;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-close span {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-main);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-close span:nth-child(1) {
+            transform: rotate(45deg);
+        }
+
+        .mobile-menu-close span:nth-child(2) {
+            transform: rotate(-45deg);
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s var(--ease-tech);
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-nav-link {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 12px 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .mobile-nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* Button Animation State */
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        @media (max-width: 960px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .header-inner .btn-primary {
+                display: none;
+                /* Hide CTA on mobile header to save space */
+            }
         }
 
         /* Hero Section */
@@ -893,10 +1039,14 @@
             height: 100%;
             width: 100%;
             background: #e5e5e5;
+            overflow: hidden;
             /* Fallback */
         }
 
         .product-visual-col img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -1878,7 +2028,7 @@
             <a href="#" class="logo"
                 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em;">MSALES.</a>
             <nav class="nav-menu">
-                <a href="index.html" class="nav-link">Accueil</a>
+                <a href="index.html" class="nav-link" style="opacity: 1; color: var(--primary);">Accueil</a>
                 <a href="a-propos.html" class="nav-link">À propos</a>
                 <a href="produits.html" class="nav-link">Produits</a>
                 <a href="formation.html" class="nav-link">Formation</a>
@@ -1888,8 +2038,33 @@
                 <a href="contact.html" class="nav-link">Contact</a>
             </nav>
             <a href="#partenaire" class="btn btn-primary" style="padding: 6px 16px; font-size: 12px;">Démarrer</a>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay">
+        <button class="mobile-menu-close" aria-label="Fermer">
+            <span></span>
+            <span></span>
+        </button>
+        <a href="index.html" class="mobile-nav-link">Accueil</a>
+        <a href="a-propos.html" class="mobile-nav-link">À propos</a>
+        <a href="produits.html" class="mobile-nav-link">Produits</a>
+        <a href="formation.html" class="mobile-nav-link">Formation</a>
+        <a href="partenaire-carriere.html" class="mobile-nav-link">Carrière</a>
+        <a href="faq.html" class="mobile-nav-link">FAQ</a>
+        <a href="blog.html" class="mobile-nav-link">Blog</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+        <a href="#partenaire" class="btn btn-primary" style="margin-top: 30px; padding: 16px 32px;"
+            onclick="document.querySelector('.mobile-menu-btn').click()">Démarrer l'aventure</a>
+    </div>
 
     <main>
         <!-- Hero Section -->
@@ -2816,7 +2991,58 @@
 
     <script>
         // Smooth Reveal Animation
-        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+        // Mobile Menu Logic
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const mobileOverlay = document.querySelector('.mobile-menu-overlay');
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+        const mobileClose = document.querySelector('.mobile-menu-close');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileBtn.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+
+            if (mobileOverlay.classList.contains('active')) {
+                // Prevent scrolling when menu is open
+                document.body.style.overflow = 'hidden';
+
+                gsap.to(mobileLinks, {
+                    y: 0,
+                    opacity: 1,
+                    stagger: 0.1,
+                    duration: 0.5,
+                    ease: "power3.out",
+                    delay: 0.2
+                });
+            } else {
+                // Enable scrolling
+                document.body.style.overflow = '';
+
+                gsap.to(mobileLinks, {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.3
+                });
+            }
+        });
+
+        if (mobileClose) {
+            mobileClose.addEventListener('click', () => {
+                mobileBtn.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        // Close menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileBtn.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
 
         // Hero Init
         const tl = gsap.timeline();
@@ -2872,6 +3098,148 @@
             }
         });
 
+        // Bento Grid Stagger Animation
+        const bentoCards = document.querySelectorAll('.bento-card');
+        gsap.fromTo(bentoCards,
+            { opacity: 0, y: 40, scale: 0.95 },
+            {
+                scrollTrigger: {
+                    trigger: '.bento-grid',
+                    start: "top 70%",
+                },
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power3.out"
+            }
+        );
+
+        // Parallax Effect for Images
+        gsap.utils.toArray('.hero-visual-wrapper img, .mission-visual img').forEach(img => {
+            gsap.to(img, {
+                yPercent: 20,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: img.parentElement,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: 1
+                }
+            });
+        });
+
+        // Number Counter Animation
+        const statValues = document.querySelectorAll('.stat-value');
+        statValues.forEach(stat => {
+            const text = stat.textContent;
+            const number = parseInt(text.replace(/\D/g, ''));
+
+            if (!isNaN(number)) {
+                gsap.fromTo(stat,
+                    { textContent: 0 },
+                    {
+                        textContent: number,
+                        duration: 2,
+                        ease: "power2.out",
+                        snap: { textContent: 1 },
+                        scrollTrigger: {
+                            trigger: stat,
+                            start: "top 80%",
+                            once: true
+                        },
+                        onUpdate: function () {
+                            stat.textContent = Math.ceil(this.targets()[0].textContent) + (text.includes('%') ? '%' : text.includes('€') ? '€' : '');
+                        }
+                    }
+                );
+            }
+        });
+
+        // Card Hover Animations
+        const cards = document.querySelectorAll('.bento-card, .reason-card, .level-col');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    y: -8,
+                    scale: 1.02,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    y: 0,
+                    scale: 1,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+        });
+
+        // Magnetic Button Effect
+        const buttons = document.querySelectorAll('.btn-primary, .cta-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                gsap.to(btn, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.5,
+                    ease: "elastic.out(1, 0.5)"
+                });
+            });
+        });
+
+        // Scroll Progress Indicator
+        gsap.to('.scroll-progress', {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: {
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.3
+            }
+        });
+
+        // Section Titles Animation
+        const sectionTitles = document.querySelectorAll('h2, h3');
+        sectionTitles.forEach(title => {
+            const words = title.textContent.split(' ');
+            title.innerHTML = words.map(word => `<span class="word">${word}</span>`).join(' ');
+
+            gsap.fromTo(title.querySelectorAll('.word'),
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    stagger: 0.05,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: title,
+                        start: "top 85%",
+                        once: true
+                    }
+                }
+            );
+        });
+
+
         // FAQ Logic
         document.querySelectorAll('.faq-trigger').forEach(button => {
             button.addEventListener('click', () => {
@@ -2914,6 +3282,7 @@
         // Product Carousel Logic
         let currentSlide = 1;
         const totalSlides = 2;
+        let carouselInterval;
 
         function showSlide(n) {
             // Hide all
@@ -2944,6 +3313,35 @@
             if (prev < 1) prev = totalSlides;
             showSlide(prev);
         }
+
+        // Auto-play carousel
+        function startCarousel() {
+            carouselInterval = setInterval(() => {
+                nextSlide();
+            }, 5000); // Change slide every 5 seconds
+        }
+
+        function stopCarousel() {
+            clearInterval(carouselInterval);
+        }
+
+        // Start auto-play
+        startCarousel();
+
+        // Pause on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', stopCarousel);
+            carouselContainer.addEventListener('mouseleave', startCarousel);
+        }
+
+        // Reset interval when manually changing slides
+        const originalShowSlide = showSlide;
+        showSlide = function (n) {
+            stopCarousel();
+            originalShowSlide(n);
+            startCarousel();
+        };
 
         // Product Tabs Logic
         function switchProductTab(slideId, tabName) {
