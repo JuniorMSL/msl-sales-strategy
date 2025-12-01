@@ -1,0 +1,98 @@
+        :root {
+            --primary: #111111;
+            /* Stark Black for impact */
+            --accent: #2563EB;
+            /* Vibrant Blue for touches */
+            --text-main: #0a0a0a;
+            --text-secondary: #525252;
+            --bg-body: #ffffff;
+            --bg-alt: #fafafa;
+            /* Very subtle grey */
+            --border-light: #e5e5e5;
+            --radius-lg: 12px;
+            /* Sharper, more technical */
+            --radius-md: 8px;
+            --radius-sm: 4px;
+            --container-width: 1140px;
+            /* Wider, more expansive */
+            --header-height: 70px;
+            --ease-tech: cubic-bezier(0.16, 1, 0.3, 1);
+            /* Snappy, precise */
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+/* PRELOADER STYLES */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99999; /* Au-dessus de tout, même du header */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary); /* Fond noir */
+    color: white;
+    font-family: var(--font-heading);
+    overflow: hidden;
+}
+
+.preloader-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    mix-blend-mode: difference; /* Effet premium si superposition */
+}
+
+.preloader-logo {
+    font-size: 24px;
+    font-weight: 700;
+    margin-right: 20px;
+    opacity: 0; /* Sera animé */
+    letter-spacing: -0.02em;
+}
+
+.preloader-counter {
+    font-size: 120px; /* Très gros pour l'impact */
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums; /* Empêche le sautillement des chiffres */
+}
+
+.preloader-percent {
+    font-size: 40px;
+    font-weight: 600;
+    opacity: 0.5;
+}
+
+/* Le rideau blanc qui passe éventuellement derrière (optionnel) ou juste le conteneur qui slide */
+.preloader-shutter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    z-index: 1;
+    transform: translateY(100%);
+}
+
+/* Masquer la scrollbar pendant le chargement */
+body.loading {
+    overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .preloader-counter {
+        font-size: 80px;
+    }
+    .preloader-logo {
+        display: none; /* Plus épuré sur mobile */
+    }
+}

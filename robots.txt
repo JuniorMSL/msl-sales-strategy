@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.msales.com/sitemap.xml
+Sitemap: https://www.msales-strategy.com/sitemap.xml
