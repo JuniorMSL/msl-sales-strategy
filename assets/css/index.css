@@ -516,7 +516,7 @@
         }
 
         .card-image-wrapper {
-            margin-top: 30px;
+
             border-radius: var(--radius-md);
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -585,7 +585,7 @@
 
         .level-features {
             list-style: none;
-            margin-top: 30px;
+
         }
 
         .level-features li {
