@@ -136,7 +136,9 @@ function startInfiniteScroll(track) {
     gsap.set(track, { x: 0 });
 
     // Create the infinite loop animation
-    const duration = 30; // 30 seconds for one complete loop
+    // Adjust duration based on screen size - slower on mobile for better UX
+    const isMobile = window.innerWidth <= 768;
+    const duration = isMobile ? 50 : 30; // 50 seconds on mobile, 30 on desktop
 
     gsap.to(track, {
         x: -totalWidth,
@@ -152,13 +154,27 @@ function startInfiniteScroll(track) {
         }
     });
 
-    // Pause on hover for better UX
+    // Pause on hover for better UX (Desktop)
     track.addEventListener('mouseenter', () => {
         gsap.to(track, { timeScale: 0.3, duration: 0.5, ease: "power2.out" });
     });
 
     track.addEventListener('mouseleave', () => {
         gsap.to(track, { timeScale: 1, duration: 0.5, ease: "power2.in" });
+    });
+
+    // Touch support for mobile - pause on touch
+    let touchTimeout;
+    track.addEventListener('touchstart', () => {
+        gsap.to(track, { timeScale: 0.2, duration: 0.3, ease: "power2.out" });
+        clearTimeout(touchTimeout);
+    });
+
+    track.addEventListener('touchend', () => {
+        // Resume after a short delay
+        touchTimeout = setTimeout(() => {
+            gsap.to(track, { timeScale: 1, duration: 0.5, ease: "power2.in" });
+        }, 500);
     });
 
     // Removed ScrollTrigger entrance animation to ensure visibility

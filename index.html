@@ -417,7 +417,7 @@
                 <div class="reasons-header reveal-text">
                     <h2>10 raisons de rejoindre MSALES</h2>
                     <p class="lead">Travaille à ton rythme, choisis ton rôle et gagne sur chaque opportunité.</p>
-                    <div class="text-center mt-5">
+                    <div class="text-center mt-5" style="margin-top: 20px;">
                         <a href="#contact" class="btn btn-primary">Devenir partenaire maintenant</a>
                     </div>
                 </div>
@@ -958,20 +958,22 @@
                 ease: "power3.out"
             }, "-=0.8");
 
-        // Hero Image Expansion on Scroll
-        gsap.to('.hero-visual-wrapper', {
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: 'center top',
-                scrub: 1,
-            },
-            width: '100vw',
-            maxWidth: '100vw',
-            marginLeft: 'calc(-50vw + 50%)',
-            borderRadius: '0px',
-            ease: 'none'
-        });
+        // Hero Image Expansion on Scroll (Desktop only)
+        if (window.innerWidth > 768) {
+            gsap.to('.hero-visual-wrapper', {
+                scrollTrigger: {
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: 'center top',
+                    scrub: 1,
+                },
+                width: '100vw',
+                maxWidth: '100vw',
+                marginLeft: 'calc(-50vw + 50%)',
+                borderRadius: '0px',
+                ease: 'none'
+            });
+        }
 
         // Scroll Reveals
         const revealElements = document.querySelectorAll('.reveal-text, .fade-in, .bento-card, .level-col');
