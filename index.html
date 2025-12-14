@@ -62,7 +62,7 @@
             <a href="#" class="logo"
                 style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em;">MSALES.</a>
             <nav class="nav-menu">
-                <a href="index.html" class="nav-link" style="opacity: 1; color: var(--primary);">Accueil</a>
+                <a href="index.html" class="nav-link" style="opacity: 1; color: var(--accent);">Accueil</a>
                 <a href="a-propos.html" class="nav-link">À propos</a>
                 <a href="produits.html" class="nav-link">Produits</a>
                 <a href="formation.html" class="nav-link">Formation</a>
@@ -201,7 +201,7 @@
                             </div>
                         </div>
 
-                        <a href="#contact" class="btn btn-primary"
+                        <a href="contact.html" class="btn btn-primary"
                             style="background: white; color: black; border: none;">Rejoins-nous dès maintenant</a>
                     </div>
 
@@ -347,7 +347,7 @@
                                 </ul>
                             </div>
 
-                            <a href="#contact" class="btn-pill-white">
+                            <a href="produits.html" class="btn-pill-white">
                                 Voir les produits
                                 <span class="btn-icon-arrow">→</span>
                             </a>
@@ -388,7 +388,7 @@
                                 </ul>
                             </div>
 
-                            <a href="#contact" class="btn-pill-white">
+                            <a href="produits.html" class="btn-pill-white">
                                 Voir les produits
                                 <span class="btn-icon-arrow">→</span>
                             </a>
@@ -418,7 +418,7 @@
                     <h2>10 raisons de rejoindre MSALES</h2>
                     <p class="lead">Travaille à ton rythme, choisis ton rôle et gagne sur chaque opportunité.</p>
                     <div class="text-center mt-5" style="margin-top: 20px;">
-                        <a href="#contact" class="btn btn-primary">Devenir partenaire maintenant</a>
+                        <a href="partenaires-carriere.html" class="btn btn-primary">Devenir partenaire maintenant</a>
                     </div>
                 </div>
             </div>
@@ -477,7 +477,7 @@
         </section>
 
         <!-- How It Works Section -->
-        <section class="how-it-works-section">
+        <section id="how-it-works" class="how-it-works-section">
             <div class="container">
                 <div class="text-center mb-5">
                     <h2 class="reveal-text" style="font-size: 48px; font-weight: 700; margin-bottom: 16px;">Comment ça
@@ -642,7 +642,7 @@
 
                 <div class="testimonials-cta reveal-text">
                     <p>Rejoins nos partenaires et commence dès aujourd'hui</p>
-                    <a href="#contact" class="btn btn-primary">Devenir partenaire</a>
+                    <a href="/partenaire-carriere.html" class="btn btn-primary">Devenir partenaire</a>
                 </div>
             </div>
         </section>
@@ -853,8 +853,8 @@
                 <div class="footer-col">
                     <h4>Compte</h4>
                     <ul>
-                        <li><a href="#contact">Espace Partenaire</a></li>
-                        <li><a href="#contact">Inscription</a></li>
+                        <li><a href="contact.html">Espace Partenaire</a></li>
+                        <li><a href="contact.html">Inscription</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1310,7 +1310,7 @@
                 <h2 class="modal-title">${data.title}</h2>
                 <img src="${data.image}" alt="${type}" class="modal-image">
                 <div class="modal-body">${data.body}</div>
-                <a href="#contact" class="modal-cta" onclick="closeModal()">${data.cta}</a>
+                <a href="contact.html" class="modal-cta" onclick="closeModal()">${data.cta}</a>
             `;
 
             document.getElementById('partnerModal').classList.add('active');
